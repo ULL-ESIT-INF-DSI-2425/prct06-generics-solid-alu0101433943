@@ -1,6 +1,7 @@
 import { describe, test, expect, vi, beforeAll, afterAll } from "vitest";
 import { Sparrow } from "../../src/ejercicio-6/models/Sparrow";
 import { Penguin } from "../../src/ejercicio-6/models/Penguin";
+import { Bird } from "../../src/ejercicio-6/models/Bird";
 
 describe("Bird subclasses", () => {
   beforeAll(() => {
@@ -34,5 +35,21 @@ describe("Bird subclasses", () => {
 
     expect(consoleSpy).toHaveBeenCalledWith("Swimming...");
     consoleSpy.mockRestore();
+  });
+
+  test("debe instanciarse correctamente", () => {
+    const bird = new Bird();
+    expect(bird).toBeInstanceOf(Bird);
+  });
+
+  test("debe llamar console.log con 'I am a bird.' al ejecutar describe()", () => {
+    const bird = new Bird();
+    const consoleLogSpy = vi.spyOn(console, "log").mockImplementation(() => {});
+    
+    bird.describe();
+
+    expect(consoleLogSpy).toHaveBeenCalledWith("I am a bird.");
+    
+    consoleLogSpy.mockRestore();
   });
 });

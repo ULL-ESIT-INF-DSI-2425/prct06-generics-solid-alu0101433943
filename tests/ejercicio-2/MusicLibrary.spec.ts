@@ -20,7 +20,6 @@ describe("MusicLibrary", () => {
   });
 
   test("Debe lanzar un error al agregar un artista inválido", () => {
-    // En lugar de `any`, verificamos con undefined o un objeto vacío incorrecto
     expect(() => library.addArtist(undefined as unknown as Artist)).toThrow("Invalid artist.");
     expect(() => library.addArtist({} as Artist)).toThrow("Invalid artist.");
   });
@@ -60,9 +59,57 @@ describe("MusicLibrary", () => {
     expect(library.searchDiscographyItem("Nonexistent Record")).toBeUndefined();
   });
 
-  test("Debe mostrar la biblioteca sin errores", () => {
-    console.log = vi.fn(); // Cambiado de `jest.fn()` a `vi.fn()`
+  test("Debe mostrar un mensaje si la biblioteca está vacía", () => {
+    const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {});
+    
     library.showLibrary();
-    expect(console.log).toHaveBeenCalledWith("No artists in the library.");
+
+    expect(consoleSpy).toHaveBeenCalledWith("No artists in the library.");
+    consoleSpy.mockRestore();
+  });
+
+  test("Debe mostrar la biblioteca correctamente con artistas", () => {
+    const song: Song = { name: "Yesterday", duration: 123, genres: ["Pop"], single: true, plays: 500000 };
+    const record = new Record("Help!", 1965, [song]);
+    const artist = new Artist("The Beatles", 1000000, [record]);
+
+    library.addArtist(artist);
+
+    const consoleTableSpy = vi.spyOn(console, "table").mockImplementation(() => {});
+
+    library.showLibrary();
+
+    expect(consoleTableSpy).toHaveBeenCalled();
+    consoleTableSpy.mockRestore();
+  });
+
+  test("Debe calcular la duración total de un disco correctamente", () => {
+    const song1: Song = { name: "Song 1", duration: 200, genres: ["Pop"], single: false, plays: 500000 };
+    const song2: Song = { name: "Song 2", duration: 180, genres: ["Pop"], single: false, plays: 300000 };
+    const record = new Record("Pop Album", 2024, [song1, song2]);
+
+    expect(record.getTotalDuration()).toBe(380);
+  });
+
+  test("Debe calcular la cantidad total de reproducciones de un disco correctamente", () => {
+    const song1: Song = { name: "Hit 1", duration: 240, genres: ["Rock"], single: false, plays: 1000000 };
+    const song2: Song = { name: "Hit 2", duration: 220, genres: ["Rock"], single: false, plays: 800000 };
+    const record = new Record("Greatest Hits", 2023, [song1, song2]);
+
+    expect(record.getTotalPlays()).toBe(1800000);
+  });
+
+  test("Debe calcular la duración total de un single correctamente", () => {
+    const song: Song = { name: "Single Hit", duration: 210, genres: ["Indie"], single: true, plays: 600000 };
+    const single = new Single("Single Hit", 2022, song);
+
+    expect(single.getTotalDuration()).toBe(210);
+  });
+
+  test("Debe calcular la cantidad total de reproducciones de un single correctamente", () => {
+    const song: Song = { name: "Viral Song", duration: 190, genres: ["Hip-Hop"], single: true, plays: 700000 };
+    const single = new Single("Viral Song", 2021, song);
+
+    expect(single.getTotalPlays()).toBe(700000);
   });
 });
