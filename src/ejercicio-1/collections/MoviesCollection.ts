@@ -1,19 +1,17 @@
-import { Media } from "../models/Media";
+import { Movie } from "../models/Movie";
 import { BasicStreamableCollection } from "./BasicStreamableCollection";
 
 /**
  * Implementación concreta para una colección de películas.
  */
-export class MoviesCollection extends BasicStreamableCollection {
-  searchByTitle(title: string): Media[] {
-    return this.items.filter(m => m.title.toLowerCase().includes(title.toLowerCase()));
+export class MoviesCollection extends BasicStreamableCollection<Movie> {
+  constructor(items: Movie[]) {
+    super(items);
   }
-
-  searchByYear(year: number): Media[] {
-    return this.items.filter(m => m.year === year);
-  }
-
-  searchByGenre(genre: string): Media[] {
-    return this.items.filter(m => m.genre.toLowerCase() === genre.toLowerCase());
+  
+  print(): void {
+    for (let i = 0; i < this.items.length; i++) {
+      console.log(`Nombre de la película: ${this.items[i].title}, año de lanzamiento: ${this.items[i].year}, género: ${this.items[i].genre}, director: ${this.items[i].director}\n`);
+    }
   }
 }

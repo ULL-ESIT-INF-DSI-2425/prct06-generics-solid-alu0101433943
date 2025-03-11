@@ -1,16 +1,16 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { DocumentariesCollection } from "../../src/ejercicio-1/collections/DocumentariesCollection";
-import { Media } from "../../src/ejercicio-1/models/Media";
+import { Documentary } from "../../src/ejercicio-1/models/Documentary";
 
 describe("DocumentariesCollection", () => {
   let collection: DocumentariesCollection;
 
   beforeEach(() => {
-    collection = new DocumentariesCollection();
-    collection.addItem(new Media("Documentary One", 2020, "History"));
-    collection.addItem(new Media("Documentary Two", 2021, "Nature"));
-    collection.addItem(new Media("History of Nature", 2021, "Nature"));
-    collection.addItem(new Media("Documentary Three", 2020, "Science"));
+    collection = new DocumentariesCollection([]);
+    collection.addItem(new Documentary("Documentary One", 2020, "History", "HC"));
+    collection.addItem(new Documentary("Documentary Two", 2021, "Nature", "Disney"));
+    collection.addItem(new Documentary("History of Nature", 2021, "Nature", "A3"));
+    collection.addItem(new Documentary("Documentary Three", 2020, "Science", "NatGeo"));
   });
 
   describe("searchByTitle", () => {

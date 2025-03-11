@@ -1,16 +1,16 @@
 import { describe, expect, beforeEach, test } from 'vitest';
-import { Media } from "../../src/ejercicio-1/models/Media";
+import { Movie } from "../../src/ejercicio-1/models/Movie";
 import { MoviesCollection } from "../../src/ejercicio-1/collections/MoviesCollection";
 
 describe('MoviesCollection', () => {
   let collection: MoviesCollection;
 
   beforeEach(() => {
-    collection = new MoviesCollection();
-    collection.addItem(new Media("Movie One", 2020, "Action"));
-    collection.addItem(new Media("Movie Two", 2021, "Comedy"));
-    collection.addItem(new Media("Action Movie", 2021, "Action"));
-    collection.addItem(new Media("Movie Three", 2020, "Drama"));
+    collection = new MoviesCollection([]);
+    collection.addItem(new Movie("Movie One", 2020, "Action", "Director One"));
+    collection.addItem(new Movie("Movie Two", 2021, "Comedy", "Director Two"));
+    collection.addItem(new Movie("Action Movie", 2021, "Action", "Director Three"));
+    collection.addItem(new Movie("Movie Three", 2020, "Drama", "Director Four"));
   });
 
   describe('searchByTitle', () => {

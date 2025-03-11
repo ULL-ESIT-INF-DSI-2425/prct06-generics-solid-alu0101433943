@@ -1,16 +1,16 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { Media } from "../../src/ejercicio-1/models/Media";
+import { Serie } from "../../src/ejercicio-1/models/Serie";
 import { SeriesCollection } from "../../src/ejercicio-1/collections/SeriesCollection";
 
 describe('SeriesCollection', () => {
   let collection: SeriesCollection;
 
   beforeEach(() => {
-    collection = new SeriesCollection();
-    collection.addItem(new Media("Series One", 2020, "Sci-Fi"));
-    collection.addItem(new Media("Series Two", 2021, "Drama"));
-    collection.addItem(new Media("Sci-Fi Series", 2021, "Sci-Fi"));
-    collection.addItem(new Media("Series Three", 2020, "Comedy"));
+    collection = new SeriesCollection([]);
+    collection.addItem(new Serie("Series One", 2020, "Sci-Fi", 4));
+    collection.addItem(new Serie("Series Two", 2021, "Drama", 2));
+    collection.addItem(new Serie("Sci-Fi Series", 2021, "Sci-Fi", 2));
+    collection.addItem(new Serie("Series Three", 2020, "Comedy", 1));
   });
 
   describe('searchByTitle', () => {

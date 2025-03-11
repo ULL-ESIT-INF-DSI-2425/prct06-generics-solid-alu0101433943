@@ -1,19 +1,17 @@
-import { Media } from "../models/Media";
+import { Serie } from "../models/Serie";
 import { BasicStreamableCollection } from "./BasicStreamableCollection";
 
 /**
  * Implementación concreta para una colección de series.
  */
-export class SeriesCollection extends BasicStreamableCollection {
-  searchByTitle(title: string): Media[] {
-    return this.items.filter(s => s.title.toLowerCase().includes(title.toLowerCase()));
+export class SeriesCollection extends BasicStreamableCollection<Serie> {
+  constructor(items: Serie[]) {
+    super(items);
   }
 
-  searchByYear(year: number): Media[] {
-    return this.items.filter(s => s.year === year);
-  }
-
-  searchByGenre(genre: string): Media[] {
-    return this.items.filter(s => s.genre.toLowerCase() === genre.toLowerCase());
+  print(): void {
+    for (let i = 0; i < this.items.length; i++) {
+      console.log(`Nombre de la serie: ${this.items[i].title}, año de transmisión: ${this.items[i].year}, género: ${this.items[i].genre}, temporadas: ${this.items[i].seasons}\n`);
+    }
   }
 }
