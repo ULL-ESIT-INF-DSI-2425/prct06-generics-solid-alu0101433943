@@ -1,8 +1,19 @@
 /**
- * Interfaz para representar elementos multimedia en la plataforma de streaming
+ * Interfaz para representar elementos multimedia en la plataforma de streaming.
  */
 export interface Media {
-  title: string,
-  year: number,
-  genre: string
+  /**
+   * El título del elemento multimedia.
+   */
+  title: string;
+
+  /**
+   * El año de lanzamiento del elemento multimedia.
+   */
+  year: number;
+
+  /**
+   * El género del elemento multimedia.
+   */
+  genre: string;
 }

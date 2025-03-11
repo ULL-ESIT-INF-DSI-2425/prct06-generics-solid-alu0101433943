@@ -1,19 +1,29 @@
 /**
- * Represents a song.
+ * Representa una canción.
  */
 export interface Song {
-  /** The name of the song. */
+  /**
+   * El nombre de la canción.
+   */
   name: string;
 
-  /** The duration of the song in seconds. */
+  /**
+   * La duración de la canción en segundos.
+   */
   duration: number;
 
-  /** The genres associated with the song. */
+  /**
+   * Los géneros de la canción.
+   */
   genres: string[];
 
-  /** Whether the song is a single or part of an album. */
+  /**
+   * Indica si la canción es un single.
+   */
   single: boolean;
 
-  /** The number of times the song has been played. */
+  /**
+   * El número de reproducciones de la canción.
+   */
   plays: number;
 }

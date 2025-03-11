@@ -33,17 +33,35 @@ export abstract class BasicStreamableCollection<T extends Media> implements Stre
     return this.items;
   }
 
+  /**
+   * Busca elementos en la colección por título.
+   * @param title - Título a buscar.
+   * @returns Un array de elementos de tipo T que coinciden con el título.
+   */
   searchByTitle(title: string): T[] {
     return this.items.filter(d => d.title.toLowerCase().includes(title.toLowerCase()));
   }
 
+  /**
+   * Busca elementos en la colección por año.
+   * @param year - Año a buscar.
+   * @returns Un array de elementos de tipo T que coinciden con el año.
+   */
   searchByYear(year: number): T[] {
     return this.items.filter(d => d.year === year);
   }
 
+  /**
+   * Busca elementos en la colección por género.
+   * @param genre - Género a buscar.
+   * @returns Un array de elementos de tipo T que coinciden con el género.
+   */
   searchByGenre(genre: string): T[] {
     return this.items.filter(d => d.genre.toLowerCase() === genre.toLowerCase());
   }
 
+  /**
+   * Método abstracto que debe ser implementado por las clases derivadas para imprimir los elementos de la colección.
+   */
   abstract print(): void;
 }
