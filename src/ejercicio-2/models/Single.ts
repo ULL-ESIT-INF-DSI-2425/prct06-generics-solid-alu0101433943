@@ -9,7 +9,7 @@ export class Single implements DiscographyItem {
    * Crea una instancia de Single.
    * @param name - El nombre del single.
    * @param releaseYear - El año de lanzamiento del single.
-   * @param song - La canción del single.
+   * @param versions - Versiones de la canción del single.
    */
   constructor(
     public name: string,
