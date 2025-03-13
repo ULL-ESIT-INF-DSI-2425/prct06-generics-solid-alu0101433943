@@ -20,8 +20,9 @@ describe("Clase NumericPrintableCollection, comprobación de sus métodos", () =
   });
 
   test("Comprobación método remove", () => {
-    expect(numericCollection.removeItem(1)).toEqual(4);
+    expect(numericCollection.removeItem(2)).toEqual(5);
     expect(numericCollection.removeItem(0)).toEqual(3);
+    expect(numericCollection.removeItem(2)).toBeUndefined();
   });
 
   test("Comprobación método getItem", () => {
@@ -34,5 +35,15 @@ describe("Clase NumericPrintableCollection, comprobación de sus métodos", () =
     numericCollection.addItem(9);
     numericCollection.addItem(8);
     expect(numericCollection.getNumberOfItems()).toEqual(5);
+  });
+
+  test("Comprobación errores", () => {
+    expect(() => {
+    numericCollection.getItem(10)
+    }).toThrow('Índice fuera de rango');
+
+    expect(() => {
+      numericCollection.removeItem(10)
+    }).toThrow('Índice fuera de rango')
   });
 });

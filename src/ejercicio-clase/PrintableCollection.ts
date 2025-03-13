@@ -24,6 +24,9 @@ export abstract class PrintableCollection<T> implements Collectable<T>, Printabl
    * @param index - Índice del ítem
    */
   getItem(index: number): T {
+    if (index > this.items.length) {
+      throw new Error("Índice fuera de rango");
+    }
     return this.items[index];
   }
 
@@ -32,6 +35,9 @@ export abstract class PrintableCollection<T> implements Collectable<T>, Printabl
    * @param index - Índice del ítem
    */
   removeItem(index: number): T {
+    if (index > this.items.length) {
+      throw new Error("Índice fuera de rango");
+    }
     const result = this.items[index];
     delete this.items[index];
     return result;

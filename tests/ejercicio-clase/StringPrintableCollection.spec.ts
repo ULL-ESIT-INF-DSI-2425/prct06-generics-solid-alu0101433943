@@ -20,8 +20,9 @@ describe("Clase StringPrintableCollection, comprobación de sus métodos", () =>
   });
 
   test("Comprobación método remove", () => {
-    expect(stringCollection.removeItem(1)).toEqual("azucar");
+    expect(stringCollection.removeItem(2)).toEqual("harina");
     expect(stringCollection.removeItem(0)).toEqual("arroz");
+    expect(stringCollection.removeItem(2)).toBeUndefined();
   });
 
   test("Comprobación método getItem", () => {
@@ -34,5 +35,15 @@ describe("Clase StringPrintableCollection, comprobación de sus métodos", () =>
     stringCollection.addItem("sopa");
     stringCollection.addItem("verdura");
     expect(stringCollection.getNumberOfItems()).toEqual(5);
+  });
+
+  test("Comprobación errores", () => {
+    expect(() => {
+    stringCollection.getItem(10)
+    }).toThrow('Índice fuera de rango');
+
+    expect(() => {
+      stringCollection.removeItem(10)
+    }).toThrow('Índice fuera de rango')
   });
 });
