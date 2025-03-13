@@ -1,5 +1,6 @@
 import { beforeEach, describe, test, expect } from "vitest";
 import { StringPrintableCollection } from "../../src/ejercicio-clase/StringPrintableCollection";
+import { PrintableCollection } from "../../src/ejercicio-clase/PrintableCollection";
 
 describe("Clase StringPrintableCollection, comprobación de sus métodos", () => {
   let stringCollection: StringPrintableCollection;
@@ -31,10 +32,12 @@ describe("Clase StringPrintableCollection, comprobación de sus métodos", () =>
   });
 
   test("Comprobación método getNumberOfItems", () => {
+    let aux: number = stringCollection.getNumberOfItems();
     expect(stringCollection.getNumberOfItems()).toEqual(3);
     stringCollection.addItem("sopa");
     stringCollection.addItem("verdura");
     expect(stringCollection.getNumberOfItems()).toEqual(5);
+    expect(stringCollection.getNumberOfItems()).toBeGreaterThan(aux);
   });
 
   test("Comprobación errores", () => {
@@ -46,4 +49,9 @@ describe("Clase StringPrintableCollection, comprobación de sus métodos", () =>
       stringCollection.removeItem(10)
     }).toThrow('Índice fuera de rango')
   });
+
+  test('Instancia de', () => {
+    expect(stringCollection).toBeInstanceOf(StringPrintableCollection);
+    expect(stringCollection).toBeInstanceOf(PrintableCollection);
+  })
 });

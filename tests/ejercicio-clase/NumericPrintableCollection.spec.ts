@@ -1,5 +1,6 @@
 import { beforeEach, describe, test, expect } from "vitest";
 import { NumericPrintableCollection } from "../../src/ejercicio-clase/NumericPrintableCollection";
+import { PrintableCollection } from "../../src/ejercicio-clase/PrintableCollection";
 
 describe("Clase NumericPrintableCollection, comprobación de sus métodos", () => {
   let numericCollection: NumericPrintableCollection;
@@ -31,10 +32,12 @@ describe("Clase NumericPrintableCollection, comprobación de sus métodos", () =
   });
 
   test("Comprobación método getNumberOfItems", () => {
+    let aux: number = numericCollection.getNumberOfItems();
     expect(numericCollection.getNumberOfItems()).toEqual(3);
     numericCollection.addItem(9);
     numericCollection.addItem(8);
     expect(numericCollection.getNumberOfItems()).toEqual(5);
+    expect(numericCollection.getNumberOfItems()).toBeGreaterThan(aux);
   });
 
   test("Comprobación errores", () => {
@@ -46,4 +49,9 @@ describe("Clase NumericPrintableCollection, comprobación de sus métodos", () =
       numericCollection.removeItem(10)
     }).toThrow('Índice fuera de rango')
   });
+
+  test('Instancia de', () => {
+    expect(numericCollection).toBeInstanceOf(NumericPrintableCollection);
+    expect(numericCollection).toBeInstanceOf(PrintableCollection);
+  })
 });
