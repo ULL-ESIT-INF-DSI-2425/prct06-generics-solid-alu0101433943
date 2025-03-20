@@ -11,4 +11,4 @@ scanner.scan();
 
 const printerScanner = new PrinterScanner();
 printerScanner.print();
-printerScanner.scan();
+printerScanner.scan()

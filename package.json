@@ -20,7 +20,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/ULL-ESIT-INF-DSI-2425/prct06-generics-solid-alu0101433943/issues"
   },
